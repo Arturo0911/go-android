@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	. "github.com/Arturo0911/go-android/connection"
+	. "github.com/Arturo0911/go-android/server"
+)
 
 func main() {
-	fmt.Println("here we go...")
+	LoadEnv()
+	Serve()
 }

@@ -3,6 +3,7 @@ package connection
 import (
 	"fmt"
 	"log"
+	"os"
 
 	//"os"
 
@@ -21,13 +22,13 @@ func NewInstance() *gorm.DB {
 
 func GetConnection() *gorm.DB {
 
-	//USER := os.Getenv("DB_USER")
-	//PASSWORD := os.Getenv("DB_PASSWORD")
+	USER := os.Getenv("DB_USER")
+	PASSWORD := os.Getenv("DB_PASSWORD")
 	//HOST := os.Getenv("DB_HOST")
-	//DBNAME := os.Getenv("DB_NAME")
+	DBNAME := os.Getenv("DB_NAME")
 
-	//URL := fmt.Sprintf("%s:%s@tcp(godockerDB)/%s?charset=utf8&parseTime=True&loc=Local", USER, PASSWORD, DBNAME)
-	URL := fmt.Sprintf("root_payload:@tcp(127.0.0.1:3306)/GreenHouseRealTime?charset=utf8&parseTime=True&loc=Local")
+	URL := fmt.Sprintf("%s:%s@tcp(godockerDB)/%s?charset=utf8&parseTime=True&loc=Local", USER, PASSWORD, DBNAME)
+	//URL := fmt.Sprintf("root_arturo:arturo_root@tcp(127.0.0.1:3306)/AndroidDB?charset=utf8&parseTime=True&loc=Local")
 
 	db, err := gorm.Open(
 		mysql.Open(URL),

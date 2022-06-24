@@ -12,7 +12,7 @@ FROM golang:1.18.1
 
 RUN mkdir /app
 
-WORKDIR $GOPATH/src/github.com/Arturo0911/measurements-realtime
+WORKDIR $GOPATH/src/github.com/Arturo0911/go-android
 
 COPY . .
 
@@ -26,6 +26,6 @@ RUN go install -v ./...
 
 EXPOSE 8000
 
-# ENTRYPOINT measurements-realtime --build="go build main.go" --command=./main
+# ENTRYPOINT go-android --build="go build main.go" --command=./main
 
-CMD ["measurements-realtime"]
+CMD ["go-android"]

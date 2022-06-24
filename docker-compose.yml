@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  db:
+    image: mysql/mysql-server:latest
+    container_name: godockerDB
+    ports:
+      - "3305:3306"
+    networks:
+      - default
+    restart: always
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_USER=${DB_USER}"
+      - "MYSQL_PASSWORD=${DB_PASSWORD}"
+      - "MYSQL_DATABASE=${DB_NAME}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ".:/app"
+    depends_on:
+      - db
+    links:
+      - "db:database"
+
+networks:
+  default:
+volumes:
+  mysql_data:
